@@ -3,6 +3,10 @@ imgur-sucker
 
 A command line utility for vacuuming a subreddit's images right off of imgur
 
+**Install**
+
+    npm install imgur-sucker
+
 You can run this command from any location, but know it will create a */sucked/* folder in your current working directory
 and will add subdirectories based on the subreddits that you pull. If logging is turned on, it will also create a json file with image vitals.
 
