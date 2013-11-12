@@ -1,10 +1,10 @@
 {
-  "name": "imgur-reddit-sucker",
-  "version": "0.1.0",
-  "description": "Sucks the images from imgur for a given subreddit",
+  "name": "imgur-sucker",
+  "version": "0.1.1",
+  "description": "Sucks the images from imgur for a given subreddit and gives you a usable json document containing image vitals",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "imgursucker": "./bin/sucker.js"
   },
   "author": "",
   "license": "WTFPL",

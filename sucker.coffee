@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 program = require 'commander'
 ProgressBar = require 'progress'
 https = require 'https'
@@ -9,7 +9,7 @@ moment = require 'moment'
 
 program
 .version('0.0.1')
-.option('-c,--client-id <imgur App Client Id>', 'imgur client id',)
+.option('-c, --client-id <imgur App Client Id>', 'imgur client id')
 .option('-p, --pages <pages>', 'number of pages to suck [10]', Number, 10)
 .option('-s, --subreddit <subreddit>', 'subreddit to suck [cats]', 'cats')
 .option('-l, --logging <boolean>', 'log downloaded image data to json file [true]', true)
@@ -177,13 +177,14 @@ checkRateLimit = ->
   .on 'error', (err) ->
     console.log 'error: ', err
   
-if (!program.args.length) program.help()
-else if program.clientId  
+
+if program.clientId  
   unless program.rateLimitCheck
     suck() 
   else
     checkRateLimit()
 
 else
-  console.log 'Imgur Client Id is required'
+  console.log 'An imgur client id is required'
+  program.help(_)
 
