@@ -109,7 +109,7 @@ getImagesFromSubreddit = (subreddit, imageList) ->
     callback: ->
       console.log '\nSucking Complete'
       if program.logging
-        fs.writeFile __dirname + "/sucked/" + subreddit + "/_" + subreddit + ".js", 'module.exports = ' + JSON.stringify(originalList, null, 4), 'utf8', (err) ->
+        fs.writeFile process.cwd() + "/sucked/" + subreddit + "/_" + subreddit + ".js", 'module.exports = ' + JSON.stringify(originalList, null, 4), 'utf8', (err) ->
           if err
             throw err
           console.log "_#{subreddit}.js written to images/#{subreddit} directory"
@@ -121,12 +121,12 @@ getImagesFromSubreddit = (subreddit, imageList) ->
 
   
   #check for file existance
-  if !fs.existsSync __dirname + '/sucked'
-    fs.mkdirSync(__dirname + '/sucked')
-  fs.exists __dirname + "/sucked/" + subreddit, (dirExists) ->
+  if !fs.existsSync process.cwd() + '/sucked'
+    fs.mkdirSync(process.cwd() + '/sucked')
+  fs.exists process.cwd() + "/sucked/" + subreddit, (dirExists) ->
     
     #check for directory existance and create it if it doesn't
-    fs.mkdirSync(__dirname + "/sucked/" + subreddit) unless dirExists
+    fs.mkdirSync(process.cwd() + "/sucked/" + subreddit) unless dirExists
     imageList.forEach (image, index, array) ->
 
         
@@ -134,7 +134,7 @@ getImagesFromSubreddit = (subreddit, imageList) ->
         filename = image.link
         
         #check to see if the file exists locally, so that we don't just absolutely hammer imgur
-        fs.exists __dirname + "/sucked/" + subreddit + "/" + filename, (exists) ->
+        fs.exists process.cwd() + "/sucked/" + subreddit + "/" + filename, (exists) ->
           unless exists
             try
               #grab the image from imgur
@@ -147,7 +147,7 @@ getImagesFromSubreddit = (subreddit, imageList) ->
                 # end imageResults data
                 imageResults.on "end", ->
                   bar.tick()
-                  fs.writeFile __dirname + "/sucked/" + subreddit + "/" + filename, imagedata, "binary", (err) ->
+                  fs.writeFile process.cwd() + "/sucked/" + subreddit + "/" + filename, imagedata, "binary", (err) ->
                     if err
                       console.log "ERROR WRITING FILE: " + err
                       throw (err)                    

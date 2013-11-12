@@ -107,7 +107,7 @@
       callback: function() {
         console.log('\nSucking Complete');
         if (program.logging) {
-          fs.writeFile(__dirname + "/sucked/" + subreddit + "/_" + subreddit + ".js", 'module.exports = ' + JSON.stringify(originalList, null, 4), 'utf8', function(err) {
+          fs.writeFile(process.cwd() + "/sucked/" + subreddit + "/_" + subreddit + ".js", 'module.exports = ' + JSON.stringify(originalList, null, 4), 'utf8', function(err) {
             if (err) {
               throw err;
             }
@@ -117,17 +117,17 @@
         }
       }
     });
-    if (!fs.existsSync(__dirname + '/sucked')) {
-      fs.mkdirSync(__dirname + '/sucked');
+    if (!fs.existsSync(process.cwd() + '/sucked')) {
+      fs.mkdirSync(process.cwd() + '/sucked');
     }
-    return fs.exists(__dirname + "/sucked/" + subreddit, function(dirExists) {
+    return fs.exists(process.cwd() + "/sucked/" + subreddit, function(dirExists) {
       if (!dirExists) {
-        fs.mkdirSync(__dirname + "/sucked/" + subreddit);
+        fs.mkdirSync(process.cwd() + "/sucked/" + subreddit);
       }
       return imageList.forEach(function(image, index, array) {
         var filename;
         filename = image.link;
-        return fs.exists(__dirname + "/sucked/" + subreddit + "/" + filename, function(exists) {
+        return fs.exists(process.cwd() + "/sucked/" + subreddit + "/" + filename, function(exists) {
           var e, imageRequest;
           if (!exists) {
             try {
@@ -140,7 +140,7 @@
                 });
                 return imageResults.on("end", function() {
                   bar.tick();
-                  return fs.writeFile(__dirname + "/sucked/" + subreddit + "/" + filename, imagedata, "binary", function(err) {
+                  return fs.writeFile(process.cwd() + "/sucked/" + subreddit + "/" + filename, imagedata, "binary", function(err) {
                     if (err) {
                       console.log("ERROR WRITING FILE: " + err);
                       throw err;

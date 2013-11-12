@@ -1,6 +1,6 @@
 {
   "name": "imgur-sucker",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Sucks the images from imgur for a given subreddit and gives you a usable json document containing image vitals.",
   "keywords": ["imgur","reddit","images","cats"],
   "main": "index.js",
@@ -11,7 +11,7 @@
   { "type" : "git"
   , "url" : "http://github.com/codevinsky/imgur-sucker.git"
   },
-  "preferGlobal": true,
+  "preferGlobal": "true",
   "author": "codevinsky",
   "license": "WTFPL",
   "dependencies": {
